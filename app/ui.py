@@ -81,7 +81,6 @@ def take_expense() -> User_input_expense:
 
 # show list of expenses to user
 def show_all_expenses(expenses: List[Expense]) -> None:
-
     expense_table = Table(title="Expenses", border_style="yellow")
 
     # fields of the display expense table ( table columns )
@@ -99,21 +98,43 @@ def show_all_expenses(expenses: List[Expense]) -> None:
 
 
 # prints budget for user
-def print_budget(income: float, expense: float, budget: float, message: str, month: str, year: str):
+def print_budget(
+    income: float, expense: float, budget: float, message: str, month: str, year: str
+):
     console = Console()
     console.print("\n\tYour budget analysis is a follows\n", style="blue")
 
-    print(f"You spent [yellow blue]{message}[/] in [bold blue]{month}[/] of [blue]{year}[/] by ₹{budget}.\n")
+    print(
+        f"You spent [yellow blue]{message}[/] in [bold blue]{month}[/] of [blue]{year}[/] by ₹{budget}.\n"
+    )
 
     budget_table = Table(title="Budget of current month", border_style="green")
 
     # fields
-    budget_table.add_column("Income", min_width=20, justify="center", vertical="middle", header_style="yellow")
-    budget_table.add_column("Expense", min_width=20, justify="center", vertical="middle", header_style="yellow")
-    budget_table.add_column("Budget", min_width=20, justify="center", vertical="middle", header_style="yellow")
+    budget_table.add_column(
+        "Income",
+        min_width=20,
+        justify="center",
+        vertical="middle",
+        header_style="yellow",
+    )
+    budget_table.add_column(
+        "Expense",
+        min_width=20,
+        justify="center",
+        vertical="middle",
+        header_style="yellow",
+    )
+    budget_table.add_column(
+        "Budget",
+        min_width=20,
+        justify="center",
+        vertical="middle",
+        header_style="yellow",
+    )
 
     # row
-    budget_table.add_row( f"₹{income}", f"₹{expense}", f"₹{budget}")
+    budget_table.add_row(f"₹{income}", f"₹{expense}", f"₹{budget}")
 
     console = Console()
     console.print(budget_table)
@@ -121,7 +142,6 @@ def print_budget(income: float, expense: float, budget: float, message: str, mon
 
 # this will summarise the expense of a month
 def expense_summary(category: str, category_amount: float, month: str, year: str):
-
     console = Console()
     month_year = month + " " + year
     console.print(f'You spent THE MOST in "{category}" in {month_year}', style="green")
@@ -131,16 +151,31 @@ def expense_summary(category: str, category_amount: float, month: str, year: str
 # printing trends s
 def print_trend(category, current_month_expense, previous_month_expense):
     console = Console()
-    console.print(f"\n Trends in your spending habits in {category.upper()} for current and past months are: \n", style="blue")
+    console.print(
+        f"\n Trends in your spending habits in {category.upper()} for current and past months are: \n",
+        style="blue",
+    )
 
     # # table for display of the trend
     category_table = Table(title=f"Trend in {category}", style="green")
 
     # column of table
-    category_table.add_column("Previous Month",min_width=20, justify="center", vertical="middle", header_style="yellow")
-    category_table.add_column("Current Month", min_width=20, justify="center", vertical="middle", header_style="yellow")
+    category_table.add_column(
+        "Previous Month",
+        min_width=20,
+        justify="center",
+        vertical="middle",
+        header_style="yellow",
+    )
+    category_table.add_column(
+        "Current Month",
+        min_width=20,
+        justify="center",
+        vertical="middle",
+        header_style="yellow",
+    )
 
-    # row of table 
+    # row of table
     category_table.add_row(f"₹{previous_month_expense}", f"₹{current_month_expense}")
 
     console = Console()

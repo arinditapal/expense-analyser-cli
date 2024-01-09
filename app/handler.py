@@ -1,9 +1,22 @@
-from typing import List, Tuple
+from typing import Tuple
 from datetime import datetime
 import calendar
 from math import fabs
-from module import add_income, add_expense, get_expense_sum, get_income, get_expense_sum_by_category
-from ui import Expense, take_income, take_expense, print_budget, Category, print_trend
+from module import (
+    add_income,
+    add_expense,
+    get_expense_sum,
+    get_income,
+    get_expense_sum_by_category,
+)
+from ui import (
+    Expense, 
+    take_income, 
+    take_expense, 
+    print_budget, 
+    Category, 
+    print_trend
+)
 
 
 # tuple(id, title, category, amount) to Expense()
@@ -45,20 +58,23 @@ def show_budget_handler() -> None:
 
     if not month:
         month = (datetime.now().strftime("%b")).lower()
-        year = datetime.now().year
+        year = str(datetime.now().year)
 
     expenses_sum = get_expense_sum(month, year)
     income = get_income(month, year)
 
     budget = round(income - expenses_sum, 3)
-    
-    print_budget(income, expenses_sum, fabs(budget), budget_analyser(budget), month, year)
+
+    print_budget(
+        income, expenses_sum, fabs(budget), 
+        budget_analyser(budget), month, year
+    )
 
 
 # find previous month name, number, year
 def find_previous_month(current_year: int) -> Tuple[str, int]:
     current_month_number = datetime.now().month
-    
+
     previous_month_number = 0
     previous_year = 0
 
@@ -77,19 +93,24 @@ def find_previous_month(current_year: int) -> Tuple[str, int]:
 
 # show trend handler
 def show_trends_handler() -> None:
-
     current_month_name = (datetime.now().strftime("%b")).lower()
-    current_year = datetime.now().year
+    current_year = str(datetime.now().year)
 
     previous_month_name, previous_year = find_previous_month(int(current_year))
-    
+
     for i in range(4):
         category = Category(i).name
 
         # getting expense of current month
-        current_month_expense_sum = get_expense_sum_by_category(category, current_month_name, current_year)
+        current_month_expense_sum = get_expense_sum_by_category(
+            category, current_month_name, current_year
+        )
 
         # getting expense of previous month
-        previous_month_expense_sum = get_expense_sum_by_category(category, previous_month_name, previous_year)
+        previous_month_expense_sum = get_expense_sum_by_category(
+            category, previous_month_name, str(previous_year)
+        )
 
-        print_trend(category, current_month_expense_sum, previous_month_expense_sum)
+        print_trend(
+            category, current_month_expense_sum, previous_month_expense_sum
+            )

@@ -1,5 +1,5 @@
 import sqlite3
-from ui import User_input_income, User_input_expense, show_all_expenses
+from ui import User_input_income, User_input_expense
 from typing import List, Tuple
 
 conn = sqlite3.connect("expense.db")
@@ -7,6 +7,7 @@ conn = sqlite3.connect("expense.db")
 cur = conn.cursor()
 
 Expense_sum_type = List[Tuple[float]]
+
 
 # get all expenses
 def get_all_expenses():
@@ -30,12 +31,16 @@ def add_expense(expense: User_input_expense) -> None:
     cur.execute(sql)
     conn.commit()
 
+
 # get sum of all expenses of a month
 def get_expense_sum(month: str, year: str) -> float:
-    sql = f"SELECT SUM(amount) FROM expenses WHERE month = '{month}' and year = '{year}'"
+    sql = (
+        f"SELECT SUM(amount) FROM expenses WHERE month = '{month}' and year = '{year}'"
+    )
     result = cur.execute(sql)
 
     return result.fetchone()[0]
+
 
 # get income of a month
 def get_income(month: str, year: str) -> float:
@@ -46,35 +51,30 @@ def get_income(month: str, year: str) -> float:
 
 # get sum of all expense of same category for a month
 def get_expense_sum_by_category(category: str, month: str, year: str) -> float:
-    sql = f'''SELECT SUM(amount) 
+    sql = f"""SELECT SUM(amount) 
                 FROM expenses 
                 GROUP BY year, month, category 
-                HAVING year = '{year}' AND month = '{month}' AND category = '{category}' '''
+                HAVING year = '{year}' AND month = '{month}' AND category = '{category}' """
 
     result = cur.execute(sql)
     try:
-        sum, = result.fetchone()
+        (sum,) = result.fetchone()
         # print(sum)
         return sum
-    except Exception as e: 
+    except Exception as e:
         # print(f"error occured {e}")
         return 0.0
 
 
 def get_month_expense_summary(month: str, year: str):
-    sql = f'''select category, sum(amount)
+    sql = f"""select category, sum(amount)
             from expenses
             group by year, month, category
             having year = "2024" and month = "jan"
-            order by sum(amount) desc '''
-    
+            order by sum(amount) desc """
+
     result = cur.execute(sql)
     result = result.fetchall()[0]
     print(result)
-
-# get_month_expense_summary("jan", "2024")
-    
-
-
 
 

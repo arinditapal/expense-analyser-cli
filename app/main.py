@@ -1,16 +1,18 @@
 from argparse import ArgumentParser
-from handler import add_expense_handler, add_income_handler, show_budget_handler, show_trends_handler
+from handler import (
+    add_expense_handler,
+    add_income_handler,
+    show_budget_handler,
+    show_trends_handler,
+)
 
 parser = ArgumentParser()
 
-parser.add_argument("operation", 
-                    help="operation you wanna perform", 
-                    choices=[
-                        "add_income", 
-                        "add_expense", 
-                        "show_budget", 
-                        "show_trends"
-                    ])
+parser.add_argument(
+    "operation",
+    help="operation you wanna perform",
+    choices=["add_income", "add_expense", "show_budget", "show_trends"],
+)
 
 args = parser.parse_args()
 
