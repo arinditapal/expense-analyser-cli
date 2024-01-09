@@ -127,8 +127,6 @@ def expense_summary(category: str, category_amount: float, month: str, year: str
     console.print(f'You spent THE MOST in "{category}" in {month_year}', style="green")
     console.print(f"\tby amount: [yellow]₹{category_amount}[/]", style="green")
 
-expense_summary("food", 200, "jan", "2024")
-
 
 # printing trends s
 def print_trend(category, current_month_expense, previous_month_expense):
