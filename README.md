@@ -1,6 +1,6 @@
 # Expense Analyser
 
-[ something about the app ]
+This is an Expense Analyser app, which will keep track of you expenses and income for a month, then give you analysis of the budget left. It can also show you trend in your expenditure for current month against previous months.
 
 ## Set up
 To get started, clone this repository, then run the following command.
@@ -13,7 +13,7 @@ This should install all the required dependencies from the pipfile.
 You can start using the app by running the python main file in app folder. Followed by a command.
 
 ```
-pipenv run python app/main.py < command >
+pipenv run python app/main.py <command>
 ```
 
 You can see the list of commands use with the app in the --help option.
