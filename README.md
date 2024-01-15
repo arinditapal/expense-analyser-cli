@@ -38,17 +38,88 @@ Little description about all the commands and what they do.
 
 
 ## Example
-This example will show you how to add a new income into the app.
+0. To add expense
+```shell
+$  pipenv run python app/main.py add_expense
+Enter title: cream bread
+Different category of expense are:
+        0 - food
+        1 - gadget
+        2 - transport
+        3 - fun
+Enter category number[0 - 3]: 0
+Enter amount: 30
+Enter month: jan
+Enter year, ex: '2024': 2024
+```
 
-```
-pipenv run python app/main.py add_income
+1. To add income
+```shell
+$  pipenv run python app/main.py add_income
+enter income: 5000
+enter month: feb
+enter year: 2024
 ```
 
-This above command should prompt you for inputs related to income as follows:
+2. To see budget
+```shell
+$  pipenv run python app/main.py show_budget
+Give following info, press enter for current month budget:
+
+Which month's budget you want to see?  [jan, feb...]:
+Which year  like: [2024, 2023...]:
+
+        Your budget analysis is a follows
+
+You spent LESS in jan of 2024 by ₹545.0.
+
+                       Budget of current month
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃        Income        ┃       Expense        ┃        Budget        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+│        ₹800.0        │        ₹255.0        │        ₹545.0        │
+└──────────────────────┴──────────────────────┴──────────────────────┘
 ```
-enter income: 4000
-enter month: jan
-enter year: 2025
+
+3. To see trend
+```shell
+$  pipenv run python app/main.py show_trends
+
+ Trends in your spending habits in FOOD for current and past months are:
+
+                 Trend in food
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃    Previous Month    ┃    Current Month     ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+│         ₹0.0         │        ₹225.0        │
+└──────────────────────┴──────────────────────┘
+
+ Trends in your spending habits in GADGET for current and past months are:
+
+                Trend in gadget
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃    Previous Month    ┃    Current Month     ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+│         ₹0.0         │         ₹0.0         │
+└──────────────────────┴──────────────────────┘
+
+ Trends in your spending habits in TRANSPORT for current and past months are:
+
+              Trend in transport
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃    Previous Month    ┃    Current Month     ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+│         ₹0.0         │        ₹20.0         │
+└──────────────────────┴──────────────────────┘
+
+ Trends in your spending habits in FUN for current and past months are:
+
+                 Trend in fun
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃    Previous Month    ┃    Current Month     ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+│         ₹0.0         │        ₹10.0         │
+└──────────────────────┴──────────────────────┘
 ```
 
 > ## Assumptions
